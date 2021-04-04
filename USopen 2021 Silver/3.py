@@ -1,4 +1,4 @@
-'''
+
 var=input().split()
 
 n=int(var[0])
@@ -13,8 +13,9 @@ data = list(map(int,raw))
 data.sort()
 print("Start:", data)
 '''
-#data = list(map(int,input().split())).sort()
-'''
+raw = input().split()
+data = list(map(int,raw))
+data.sort()
 copy = data.copy()
 def hindex(citations, n):
     hindex = 0
@@ -47,17 +48,12 @@ else:
         for i in range(l):
             data[i]+=1
         data.sort()
-        print(data)
     current = hindex(list(reversed(data)), n)
-    print(current)
     if n-(current+1)>0:
         for i in range(n-(current+1)):
             comp+=(data[i]-copy[i])
-        print(comp)
         data[n-(current+1)]+=comp
-        print(data)
         if hindex(data, n)>current:
             current=hindex(list(reversed(data)), n)
 data.sort()
-print("End:", data)
 print(current)
