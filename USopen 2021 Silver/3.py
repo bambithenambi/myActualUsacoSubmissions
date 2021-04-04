@@ -55,5 +55,4 @@ else:
         data[n-(current+1)]+=comp
         if hindex(data, n)>current:
             current=hindex(list(reversed(data)), n)
-data.sort()
 print(current)

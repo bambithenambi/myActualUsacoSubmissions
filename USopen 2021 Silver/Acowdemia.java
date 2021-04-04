@@ -15,33 +15,33 @@ public class Acowdemia {
     int[] copy = data.clone();
 
     int comp = 0;
+    int current;
     if (l>=n) {
       for (int i=0; i<n; i++) {
         data[i]+=k;
       }
-    int current = hIndex(data)
+      current = hIndex(data, n);
     }
     else {
-      for (int j=0; i<k; j++) {
+      for (int j=0; j<k; j++) {
         for (int i=0; i<l; i++) {
           data[i]+=1;
         }
         Arrays.sort(data);
       }
-      int current = hIndex(data)
+      current = hIndex(data, n);
       if (n-(current+1)>0) {
         for (int c=0; c<(n-(current+1)); c++) {
-          comp+=(data[c]-copy[c])
+          comp+=(data[c]-copy[c]);
+        }
+        data[n-(current+1)]+=comp;
+        if (hIndex(data, n)>current) {
+          current=hIndex(data, n);
         }
       }
 
     }
-
-
-
-
-
-
+    System.out.println(current);
   }
 static int hIndex(int[] citations, int n) {
   reverseArray(citations);
