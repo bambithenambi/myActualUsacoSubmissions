@@ -1,12 +1,21 @@
+'''
 var=input().split()
+
 n=int(var[0])
 k=int(var[1])
 l=int(var[2])
-
-raw_input = input().split()
-
-data = list(map(int,citation_list)).sort()
-copy = data
+'''
+n=6
+k=5
+l=2
+raw = input("Enter a list: ").split()
+data = list(map(int,raw))
+data.sort()
+print("Start:", data)
+'''
+#data = list(map(int,input().split())).sort()
+'''
+copy = data.copy()
 def hindex(citations, n):
     hindex = 0
     # Set the range for binary search
@@ -28,22 +37,27 @@ def hindex(citations, n):
             high = mid - 1
     return hindex
 
-finaldata=list()
 comp=0
 if l>=n:
     for i in range(n):
         data[i]+=k
-    current = hindex(data, n)
+    current = hindex(list(reversed(data)), n)
 else:
     for counter in range(k):
         for i in range(l):
             data[i]+=1
         data.sort()
-    current = hindex(data, n)
+        print(data)
+    current = hindex(list(reversed(data)), n)
+    print(current)
     if n-(current+1)>0:
         for i in range(n-(current+1)):
             comp+=(data[i]-copy[i])
-        data[n-current]+=comp
+        print(comp)
+        data[n-(current+1)]+=comp
+        print(data)
         if hindex(data, n)>current:
-            current=hindex(data, n)
+            current=hindex(list(reversed(data)), n)
+data.sort()
+print("End:", data)
 print(current)
